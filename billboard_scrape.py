@@ -3,6 +3,41 @@ import requests
 import lyricsgenius
 import json
 
+#function that loads a lexicon of positive words to a set and returns the set
+def loadLexicon(fname):
+    newLex=set()
+    lex_conn=open(fname)
+    #add every word in the file to the set
+    for line in lex_conn:
+        newLex.add(line.strip())# remember to strip to remove the lin-change character
+    lex_conn.close()
+
+    return newLex
+
+def analyzer(lyrics):
+	posLex=loadLexicon('positive-words.txt')
+	negLex=loadLexicon('negative-words.txt')
+
+	posList=[] #list of positive words in the review
+	negList=[] #list of negative words in the review
+    
+	words=lyrics.split(' ') # split on the space to get list of words
+
+	for word in words: #for every word in the review
+		if word in posLex: # if the word is in the positive lexicon
+			posList.append(word) #update the positive list for this review
+		if word in negLex: # if the word is in the negative lexicon
+			negList.append(word) #update the negative list for this review
+
+	decision=0  # 0 for neutral    
+	if len(posList)>len(negList): # more pos words than neg
+		decision=1 # 1 for positive
+	elif len(negList)>len(posList):  # more neg than pos
+		decision=-1 # -1 for negative
+	
+
+	return decision
+
 yearend = 2018
 
 all_my_data = []
@@ -21,7 +56,7 @@ while yearend <= 2018:
 			"rank" : None,
 			"artist_name" : None,
 			"song_title" : None,
-			"lyrics" : None
+			"decision" : None
 		}
 		print(yearend)
 		mydata['rank'] = a_div.find('div', attrs = {'class':'ye-chart-item__rank'}).text.replace('\n','')
@@ -31,14 +66,14 @@ while yearend <= 2018:
 		genius = lyricsgenius.Genius("SDz9JqIhSC4EmyYkkYUXieoujaqWqffF76nK73StrCPYj5qECgRImHt875qQepq3")
 		song = genius.search_song(mydata['song_title'], mydata['artist_name'])
 		if song is not None:
-			mydata['lyrics'] = song.lyrics
+			mydata['decision'] = analyzer(song.lyrics) # split the lyrics into individual words
 		else:
-			mydata['lyrics'] = ""
+			mydata['decision'] = ""
 
 		all_my_data.append(mydata)
 		top_10_count = top_10_count + 1
 
-		if top_10_count == 10:
+		if top_10_count == 2:
 			break;
 
 	yearend = yearend + 1
