@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import lyricsgenius
 import json
+import csv
 
 #function that loads a lexicon of positive words to a set and returns the set
 def loadLexicon(fname):
@@ -53,7 +54,9 @@ while yearend <= 2018:
 			"artist_name" : None,
 			"song_title" : None,
 			"words" : None,
-			"decision" : None
+			"positive" : None,
+			"negative" : None,
+			"neutral" : None
 		}
 		print(yearend)
 		mydata['rank'] = a_div.find('div', attrs = {'class':'ye-chart-item__rank'}).text.replace('\n','')
@@ -65,9 +68,14 @@ while yearend <= 2018:
 		if song is not None:
 			splitLyrics = song.lyrics.split(' ')
 			mydata["words"] = len(splitLyrics)
-			mydata['decision'] = analyzer(splitLyrics, len(splitLyrics)) # split the lyrics into individual words
+			decision = analyzer(splitLyrics, len(splitLyrics)) # split the lyrics into individual words
+			mydata["positive"] = decision[0]
+			mydata["negative"] = decision[1]
+			mydata["neutral"] = decision[2]
 		else:
-			mydata['decision'] = ""
+			mydata["positive"] = 0
+			mydata["negative"] = 0
+			mydata["neutral"] = 0
 			mydata["words"] = 0
 
 		all_my_data.append(mydata)
