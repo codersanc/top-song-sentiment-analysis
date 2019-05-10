@@ -27,8 +27,6 @@ def analyzer(words, total_count):
 			num_positive = num_positive + 1
 		if word in negLex: # if the word is in the negative lexicon
 			num_negative = num_negative + 1
-	print(num_positive)
-	print(num_negative)
 
 	positives = num_positive/total_count * 100
 	negatives = num_negative/total_count * 100
