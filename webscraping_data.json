@@ -4,6 +4,7 @@
     "rank": "1",
     "artist_name": "Drake",
     "song_title": "God's Plan",
+    "words": 301,
     "decision": -1
   },
   {
@@ -11,6 +12,7 @@
     "rank": "2",
     "artist_name": "Ed Sheeran",
     "song_title": "Perfect",
+    "words": 258,
     "decision": 1
   }
 ]

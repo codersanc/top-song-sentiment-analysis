@@ -14,14 +14,12 @@ def loadLexicon(fname):
 
     return newLex
 
-def analyzer(lyrics):
+def analyzer(words = []):
 	posLex=loadLexicon('positive-words.txt')
 	negLex=loadLexicon('negative-words.txt')
 
 	posList=[] #list of positive words in the review
 	negList=[] #list of negative words in the review
-    
-	words=lyrics.split(' ') # split on the space to get list of words
 
 	for word in words: #for every word in the review
 		if word in posLex: # if the word is in the positive lexicon
@@ -56,6 +54,7 @@ while yearend <= 2018:
 			"rank" : None,
 			"artist_name" : None,
 			"song_title" : None,
+			"words" : None,
 			"decision" : None
 		}
 		print(yearend)
@@ -66,9 +65,11 @@ while yearend <= 2018:
 		genius = lyricsgenius.Genius("SDz9JqIhSC4EmyYkkYUXieoujaqWqffF76nK73StrCPYj5qECgRImHt875qQepq3")
 		song = genius.search_song(mydata['song_title'], mydata['artist_name'])
 		if song is not None:
-			mydata['decision'] = analyzer(song.lyrics) # split the lyrics into individual words
+			mydata['decision'] = analyzer(song.lyrics.split(' ')) # split the lyrics into individual words
+			mydata["words"] = len(song.lyrics.split(' '))
 		else:
 			mydata['decision'] = ""
+			mydata["words"] = 0
 
 		all_my_data.append(mydata)
 		top_10_count = top_10_count + 1
