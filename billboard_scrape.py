@@ -35,7 +35,7 @@ def analyzer(words, total_count):
 
 	return positives, negatives, neutrals
 
-yearend = 2018
+yearend = 2008
 
 all_my_data = []
 
