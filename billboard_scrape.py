@@ -32,8 +32,8 @@ def analyzer(words, total_count):
 	positives = num_positive/total_count * 100
 	negatives = num_negative/total_count * 100
 	neutrals = 100 - (positives + negatives)
-
-	return positives, negatives, neutrals
+	total_score =  positives - negatives
+	return positives, negatives, neutrals, total_score
 
 yearend = 2008
 
@@ -72,10 +72,12 @@ while yearend <= 2018:
 			mydata["positive"] = decision[0]
 			mydata["negative"] = decision[1]
 			mydata["neutral"] = decision[2]
+			mydata["total_score"] = decision[3]
 		else:
 			mydata["positive"] = 0
 			mydata["negative"] = 0
 			mydata["neutral"] = 0
+			mydata["total_score"] = 0
 			mydata["words"] = 0
 
 		all_my_data.append(mydata)
