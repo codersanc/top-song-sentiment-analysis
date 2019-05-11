@@ -46,7 +46,7 @@ while yearend <= 2018:
 	soup = BeautifulSoup(page_html, "html.parser")
 
 	all_labels = soup.find_all("article", attrs = {'class':'ye-chart-item'})
-	top_10_count = 0
+	top_20_songs = 0
 	for a_div in all_labels:
 		mydata = {
 			"year-end": yearend,
@@ -79,9 +79,9 @@ while yearend <= 2018:
 			mydata["words"] = 0
 
 		all_my_data.append(mydata)
-		top_10_count = top_10_count + 1
+		top_20_songs = top_20_songs + 1
 
-		if top_10_count == 2:
+		if top_20_songs == 20:
 			break;
 
 	yearend = yearend + 1
