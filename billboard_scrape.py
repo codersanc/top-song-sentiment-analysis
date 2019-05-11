@@ -86,6 +86,9 @@ while yearend <= 2018:
 
 	yearend = yearend + 1
 
-my_open_file = open('webscraping_data.json','w')
+with open('webscraping_data.csv', 'w') as output_file:
+	dict_writer = csv.DictWriter(output_file, all_my_data[0].keys())
+	dict_writer.writeheader()
+	dict_writer.writerows(all_my_data)
 
-json.dump(all_my_data,my_open_file,indent=2)
+
