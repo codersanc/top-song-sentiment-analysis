@@ -3,9 +3,7 @@ This is the repository for the final project for our Python class at Pratt Insti
 
 Our Team
 --------
-> Sanchit Kumar
-> Dilasha Jain
-> Naman Sehgal
+Sanchit Kumar | Dilasha Jain | Naman Sehgal
 
 How to make this project work
 -----------------------------
