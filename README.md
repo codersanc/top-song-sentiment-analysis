@@ -13,3 +13,4 @@ How to make this project work
    "pip install lyricsgenius"
 3. Run the code - 
    "python3 billboard_scrape.py" - It will create a CSV called 'webscraping_data.csv' - This CSV can be used to feed tableau
+4. You can also run the tableau workbook present in this repo - 'Top Song Sentiment Analysis.twbx'
