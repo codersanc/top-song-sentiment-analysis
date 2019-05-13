@@ -1,4 +1,4 @@
-# top-song-sentiment-analysis
+# Top 20 Song Lyrics Sentiment Analysis
 This is the repository for the final project for our Python class at Pratt Institute. 
 
 Our Team
