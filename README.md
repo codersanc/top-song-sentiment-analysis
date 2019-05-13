@@ -12,4 +12,4 @@ How to make this project work
 2. Install lyricsgenius - 
    "pip install lyricsgenius"
 3. Run the code - 
-   "python3 billboard_scrape.py"
+   "python3 billboard_scrape.py" - It will create a CSV called 'webscraping_data.csv' - This CSV can be used to feed tableau
